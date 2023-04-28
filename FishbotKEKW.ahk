@@ -206,9 +206,9 @@ F3::
     While GetKeyState("LButton", "P")
         Sleep 10
     ElapsedTime1 := A_TickCount - StartTime
-	if ElapsedTime1 > 950
+	if ElapsedTime1 > 975
 	{
-		ElapsedTime1 = 950
+		ElapsedTime1 = 975
 	}
 	StartTime = 
 	
@@ -222,9 +222,9 @@ F3::
     While GetKeyState("LButton", "P")
         Sleep 10
     ElapsedTime2 := A_TickCount - StartTime
-	if ElapsedTime2 > 950
+	if ElapsedTime2 > 975
 	{
-		ElapsedTime2 = 950
+		ElapsedTime2 = 975
 	}
 	StartTime = 
 	
@@ -238,9 +238,9 @@ F3::
     While GetKeyState("LButton", "P")
         Sleep 10
     ElapsedTime3 := A_TickCount - StartTime
-	if ElapsedTime3 > 950
+	if ElapsedTime3 > 975
 	{
-		ElapsedTime3 = 950
+		ElapsedTime3 = 975
 	}
 	StartTime = 
 	
@@ -262,9 +262,9 @@ F2::
     While GetKeyState("LButton", "P")
         Sleep 10
     ElapsedTime1 := A_TickCount - StartTime
-	if ElapsedTime1 > 950
+	if ElapsedTime1 > 975
 	{
-		ElapsedTime1 = 950
+		ElapsedTime1 = 975
 	}
 	StartTime = 
 	
@@ -278,9 +278,9 @@ F2::
     While GetKeyState("LButton", "P")
         Sleep 10
     ElapsedTime2 := A_TickCount - StartTime
-	if ElapsedTime2 > 950
+	if ElapsedTime2 > 975
 	{
-		ElapsedTime2 = 950
+		ElapsedTime2 = 975
 	}
 	StartTime = 
 	
@@ -303,9 +303,9 @@ F1::
     While GetKeyState("LButton", "P")
         Sleep 10
     ElapsedTime1 := A_TickCount - StartTime
-	if ElapsedTime1 > 950
+	if ElapsedTime1 > 975
 	{
-		ElapsedTime1 = 950
+		ElapsedTime1 = 975
 	}
 	StartTime = 
 	
