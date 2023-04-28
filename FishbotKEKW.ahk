@@ -37,8 +37,7 @@ spot2Y = 0
 spot3X = 0
 spot3Y = 0
 
-Esc::ExitApp
-
+Esc::reload
 
 F4::
     loopCount = 0
@@ -46,7 +45,8 @@ F4::
 
     currentSpotX = %spot1X%
     currentSpotY = %spot1Y%
-
+	ElapsedTimefish = %ElapsedTime1%
+	
     Loop
     {   
         Random, rand, -20, 20
@@ -55,18 +55,25 @@ F4::
 
         Click %thisX%, %thisY%, down
         Random, rand, 850, 1050
-        Sleep %rand%
+		if ElapsedTimefish > 0
+		{
+			Sleep %ElapsedTimefish%
+		}
+        else
+		{
+			Sleep %rand%
+		}
         Click up
-
         Sleep 2000
-
         k = 0
         Loop
-        {   
+        {
             k++
             if k > 300000
+			{
                 break
-            VA_IAudioMeterInformation_GetPeakValue(audioMeter, peakValue)
+            }
+			VA_IAudioMeterInformation_GetPeakValue(audioMeter, peakValue)
             if peakValue > 0.011
             {
                 Random, rand, 0, 450
@@ -89,20 +96,24 @@ F4::
         while pulling
         {
             if !pulling
+			{
                 break
-
+			}
             Click down
-
+			
             Loop
             {
                 if !pulling
+				{
                     break
-
+				}
                 PixelSearch Px, Py, 990, 554, 990, 554, %greenBarColor%, 50, RGB
                 if ErrorLevel
+				{
                     break
+				}
             }
-
+			
             Click up
             Sleep 100
         }
@@ -115,24 +126,28 @@ F4::
             loopCount = 0
         }
         else
+		{
             loopCount++
-
+		}
         if mode = 3 
         {
             if (modeCount = 4)
             {
                 currentSpotX = %spot2X%
                 currentSpotY = %spot2Y%
+				ElapsedTimefish = %ElapsedTime2%
             }
             if (modeCount = 8)
             {
                 currentSpotX = %spot3X%
                 currentSpotY = %spot3Y%
+				ElapsedTimefish = %ElapsedTime3%
             }
             if (modeCount = 12)
             {
                 currentSpotX = %spot1X%
                 currentSpotY = %spot1Y%
+				ElapsedTimefish = %ElapsedTime1%
                 modeCount = 0
             }
         }
@@ -142,11 +157,13 @@ F4::
             {
                 currentSpotX = %spot2X%
                 currentSpotY = %spot2Y%
+				ElapsedTimefish = %ElapsedTime2%
             }
             if (modeCount = 8)
             {
                 currentSpotX = %spot1X%
                 currentSpotY = %spot1Y%
+				ElapsedTimefish = %ElapsedTime3%
                 modeCount = 0
             }
         }
@@ -183,19 +200,52 @@ F3::
     ToolTip , Click on the first spot...
     KeyWait, LButton, D
     MouseGetPos, spot1X, spot1Y
+	
+	StartTime := A_TickCount
+    While GetKeyState("LButton", "P")
+        Sleep 10
+    ElapsedTime1 := A_TickCount - StartTime
+	if ElapsedTime1 > 950
+	{
+		ElapsedTime1 = 950
+	}
+	StartTime = 
+	
     Sleep 200
     Send {s}
     ToolTip , Click on the second spot...
     KeyWait, LButton, D
     MouseGetPos, spot2X, spot2Y
+	
+	StartTime := A_TickCount
+    While GetKeyState("LButton", "P")
+        Sleep 10
+    ElapsedTime2 := A_TickCount - StartTime
+	if ElapsedTime2 > 950
+	{
+		ElapsedTime2 = 950
+	}
+	StartTime = 
+	
     Sleep 200
     Send {s}
     ToolTip , Click on the third spot...
     KeyWait, LButton, D
     MouseGetPos, spot3X, spot3Y
+	
+	StartTime := A_TickCount
+    While GetKeyState("LButton", "P")
+        Sleep 10
+    ElapsedTime3 := A_TickCount - StartTime
+	if ElapsedTime3 > 950
+	{
+		ElapsedTime3 = 950
+	}
+	StartTime = 
+	
     Sleep 200
     Send {s}
-    ToolTip , Spots selection completed, press F4 to start fishing!
+    ToolTip , Spots selection completed press F4 to start fishing! 1= Left button held for %ElapsedTime1% ms 2= Left button held for %ElapsedTime2% ms 3= Left button held for %ElapsedTime3% ms
     SetTimer, RemoveToolTip, -2500
 
 return
@@ -206,14 +256,36 @@ F2::
     ToolTip , Click on the first spot...
     KeyWait, LButton, D
     MouseGetPos, spot1X, spot1Y
+	
+	StartTime := A_TickCount
+    While GetKeyState("LButton", "P")
+        Sleep 10
+    ElapsedTime1 := A_TickCount - StartTime
+	if ElapsedTime1 > 950
+	{
+		ElapsedTime1 = 950
+	}
+	StartTime = 
+	
     Sleep 200
     Send {s}
     ToolTip , Click on the second spot...
     KeyWait, LButton, D
     MouseGetPos, spot2X, spot2Y
+	
+	StartTime := A_TickCount
+    While GetKeyState("LButton", "P")
+        Sleep 10
+    ElapsedTime2 := A_TickCount - StartTime
+	if ElapsedTime2 > 950
+	{
+		ElapsedTime2 = 950
+	}
+	StartTime = 
+	
     Sleep 200
     Send {s}
-    ToolTip , Spots selection completed, press F4 to start fishing!
+    ToolTip , selection completed. press F4 to start fishing! 1= Left button held for %ElapsedTime1% ms 2= Left button held for %ElapsedTime2% ms
     SetTimer, RemoveToolTip, -2500
 
 return
@@ -221,12 +293,24 @@ return
 F1::
 
     mode = 1
-    ToolTip , Click on the first spot...
+    ToolTip , Click on the first spot...s
+	
     KeyWait, LButton, D
     MouseGetPos, spot1X, spot1Y
+	
+	StartTime := A_TickCount
+    While GetKeyState("LButton", "P")
+        Sleep 10
+    ElapsedTime1 := A_TickCount - StartTime
+	if ElapsedTime1 > 950
+	{
+		ElapsedTime1 = 950
+	}
+	StartTime = 
+	
     Sleep 200
     Send {s}
-    ToolTip , Spots selection completed, press F4 to start fishing!
+    ToolTip , selection completed. press F4 to start fishing! Left button held for %ElapsedTime1% ms
     SetTimer, RemoveToolTip, -2500
 
 return
@@ -248,6 +332,7 @@ checkIfPulling:
 
     PixelSearch Px, Py, 840, 588, 840, 588, %blueBarColor%, 30, RGB
     if ErrorLevel
+	{
         pulling = 0
-
+	}
 return
