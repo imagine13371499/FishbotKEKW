@@ -37,7 +37,8 @@ spot2Y = 0
 spot3X = 0
 spot3Y = 0
 
-Esc::reload
+Esc::ExitApp
+F5::reload
 
 F4::
     loopCount = 0
